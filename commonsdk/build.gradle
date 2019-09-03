@@ -1,0 +1,113 @@
+apply plugin: 'com.android.library'
+apply from: "../common.gradle"
+
+android {
+    resourcePrefix "sdk_"
+}
+
+dependencies {
+    api project(':commonres')
+
+    //公共资源组件
+    //support
+//    api rootProject.ext.dependencies["annotations"]
+//    api 'androidx.annotation:annotation:1.1.0-rc01'
+
+    //androidx
+    api rootProject.ext.dependencies["androidx-core"]
+    api rootProject.ext.dependencies["androidx-appcompat"]
+    api rootProject.ext.dependencies["androidx-constraint"]
+    api rootProject.ext.dependencies["androidx-meterail"]
+    api rootProject.ext.dependencies["androidx-recyclerview"]
+    api rootProject.ext.dependencies["androidx-annotation"]
+
+    //room
+    api rootProject.ext.dependencies["room-runtime"]
+    annotationProcessor rootProject.ext.dependencies["room-compiler"]
+    testApi(rootProject.ext.dependencies["room-testing"]) {
+        exclude module: 'support-compat'
+        exclude module: 'support-annotations'
+        exclude module: 'support-core-utils'
+        exclude module: 'gson'
+    }
+    api(rootProject.ext.dependencies["room-rxjava2"]) {
+        exclude module: 'rxjava'
+    }
+
+    //view
+    api(rootProject.ext.dependencies["brvah"]) {
+        exclude module: 'recyclerview-v7'
+    }
+
+    //rx
+    api rootProject.ext.dependencies["rxjava2"]
+    api(rootProject.ext.dependencies["rxandroid2"]) {
+        exclude module: 'rxjava'
+    }
+    api(rootProject.ext.dependencies["rxcache2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'dagger'
+        exclude module: 'api'
+    }
+    api(rootProject.ext.dependencies["rxcache-jolyglot-gson"]) {
+        exclude module: 'gson'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2-android"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+    }
+    api(rootProject.ext.dependencies["rxpermissions2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+    }
+    api rootProject.ext.dependencies['rxerrorhandler2']
+
+    //network
+    api(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    api(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    api(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies["okhttp3"]
+
+    //tools
+//    api rootProject.ext.dependencies["javax.annotation"]
+    api rootProject.ext.dependencies["dagger2"]
+//    api rootProject.ext.dependencies["dagger2-android"]
+    api rootProject.ext.dependencies["dagger2-android-support"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-android-processor"]
+    api rootProject.ext.dependencies["androideventbus"]
+    api rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["jackson-core"]
+    api rootProject.ext.dependencies["jackson-databind"]
+    api rootProject.ext.dependencies["jackson-annotations"]
+    api(rootProject.ext.dependencies["arouter"]) {
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    }
+    api rootProject.ext.dependencies["anko"]
+
+    //test
+    api rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["retrofit-url-manager"]
+
+}

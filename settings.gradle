@@ -1,0 +1,1 @@
+include ':app', ':mvpcore', ':mvvmcore', ':commonsdk', ':imageloader-glide', ':module_zhihu', ':commonservice', ':commonres', ':module_gold'

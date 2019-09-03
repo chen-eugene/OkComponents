@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.eugene.mvvm">
+
+    <application>
+        <meta-data android:name="com.eugene.mvvm.base.MvvmConfiguration"
+                   android:value="ConfigModule"/>
+    </application>
+
+</manifest>

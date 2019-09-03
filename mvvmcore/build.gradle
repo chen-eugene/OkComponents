@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: "../common.gradle"
+
+android {
+    resourcePrefix "mvvm_"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':commonsdk')
+//    api project(':imageloader-glide')
+
+    api rootProject.ext.dependencies["lifecycle-extensions"]
+}

@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply from: "../common.gradle"
+
+android {
+    resourcePrefix "mvp_"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':commonsdk')
+    api project(':imageloader-glide')
+
+}

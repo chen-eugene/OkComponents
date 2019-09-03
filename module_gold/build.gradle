@@ -1,0 +1,22 @@
+apply from: "../component.gradle"
+
+android {
+    resourcePrefix "gold_"
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            if (isApp) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':mvvmcore')
+
+}
