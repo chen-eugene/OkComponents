@@ -1,20 +1,20 @@
 package com.eugene.module_gold.di.module
 
-import androidx.lifecycle.ViewModelProvider
-import com.eugene.mvvm.mvvm.ViewModelFactory
+import androidx.lifecycle.ViewModel
+import com.eugene.module_gold.mvvm.viewmodel.GoldHomeViewModel
+import com.eugene.mvvm.di.module.ViewModelFactoryModule
+import com.eugene.mvvm.di.scope.ViewModelMapKey
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
-@Module
+@Module(includes = [ViewModelFactoryModule::class])
 abstract class ViewModelModule {
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-//    @Binds
-//    @IntoMap
-//    @ViewModelMapKey(UserViewModel::class)
-//    abstract fun userViewModel(vm: UserViewModel): ViewModel
+    @IntoMap
+    @ViewModelMapKey(GoldHomeViewModel::class)
+    abstract fun userViewModel(vm: GoldHomeViewModel): ViewModel
 
 
 }

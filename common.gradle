@@ -1,4 +1,3 @@
-apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -21,6 +20,16 @@ android {
 
     dataBinding {
         enabled true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        disable "ResourceType"
+        abortOnError false
     }
 
     buildTypes {
@@ -46,9 +55,9 @@ dependencies {
     implementation rootProject.ext.dependencies.kotlin
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-//    kapt rootProject.ext.dependencies["dagger2-compiler"]
-//    kapt rootProject.ext.dependencies["dagger2-android-processor"]
-//    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-compiler"]
+    kapt rootProject.ext.dependencies["dagger2-android-processor"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 
     debugImplementation rootProject.ext.dependencies["canary-debug"]
 }

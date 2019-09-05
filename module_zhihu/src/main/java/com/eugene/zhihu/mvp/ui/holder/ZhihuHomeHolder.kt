@@ -13,11 +13,10 @@ import com.eugene.zhihu.mvp.model.entity.DailyListBean
 
 class ZhihuHomeHolder(itemView: View) : BaseHolder<DailyListBean.StoriesBean>(itemView) {
 
-    private val mSdkComponent: SdkComponent
+    private val mSdkComponent: SdkComponent = ArmsUtils.obtainSdkComponentFromContext(itemView.context)
     private val mImageLoader: ImageLoader?
 
     init {
-        mSdkComponent = ArmsUtils.obtainSdkComponentFromContext(itemView.context)
         mImageLoader = mSdkComponent.imageLoader()
     }
 

@@ -20,19 +20,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.eugene.commonsdk.base.DefAdapter
 import com.eugene.commonsdk.utils.ArmsUtils
-import com.eugene.mvpcore.base.BaseActivity
 import com.eugene.commonservice.core.RouterHub
+import com.eugene.mvpcore.base.BaseActivity
 import com.eugene.zhihu.R
 import com.eugene.zhihu.mvp.contract.ZhihuHomeContract
 import com.eugene.zhihu.mvp.presenter.ZhihuHomePresenter
-
-import javax.inject.Inject
-
 import timber.log.Timber
+import javax.inject.Inject
 
 
 /**
@@ -46,7 +43,8 @@ import timber.log.Timber
  * ================================================
  */
 @Route(path = RouterHub.ZHIHU_HOMEACTIVITY)
-class ZhihuHomeActivity : BaseActivity<ZhihuHomePresenter>(), ZhihuHomeContract.View, SwipeRefreshLayout.OnRefreshListener {
+class ZhihuHomeActivity : BaseActivity<ZhihuHomePresenter>(), ZhihuHomeContract.View,
+    SwipeRefreshLayout.OnRefreshListener {
 
 
     internal var mRecyclerView: RecyclerView? = null
@@ -55,10 +53,6 @@ class ZhihuHomeActivity : BaseActivity<ZhihuHomePresenter>(), ZhihuHomeContract.
     internal var mLayoutManager: RecyclerView.LayoutManager? = null
     @set:Inject
     internal var mAdapter: RecyclerView.Adapter<*>? = null
-
-    override fun injectable(): Boolean {
-        return true
-    }
 
 //    override fun setupActivityComponent(appComponent: SdkComponent) {
 //        DaggerZhihuHomeComponent

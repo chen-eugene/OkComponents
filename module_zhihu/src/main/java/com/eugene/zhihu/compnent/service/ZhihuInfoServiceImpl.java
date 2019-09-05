@@ -22,7 +22,6 @@ import com.eugene.commonsdk.utils.ArmsUtils;
 import com.eugene.commonservice.core.RouterHub;
 import com.eugene.commonservice.zhuhu.bean.ZhihuInfo;
 import com.eugene.commonservice.zhuhu.service.ZhihuInfoService;
-import com.eugene.zhihu.R;
 
 /**
  * ================================================

@@ -14,21 +14,14 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-open class BaseApplication : Application(), IApp, HasActivityInjector, HasSupportFragmentInjector {
+open class BaseApplication : Application(), IApp, HasActivityInjector {
 
     //Dagger.Android Activity 注入
     @set:Inject
     var mActivityInjector: DispatchingAndroidInjector<Activity>? = null
-    //Dagger.Android Fragment 注入
-    @set:Inject
-    var mFragmentInjector: DispatchingAndroidInjector<Fragment>? = null
 
     override fun activityInjector(): AndroidInjector<Activity> {
         return this.mActivityInjector!!
-    }
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-        return this.mFragmentInjector!!
     }
 
     private var mAppProxy: IAppLifecycle? = null

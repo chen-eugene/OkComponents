@@ -59,9 +59,10 @@ interface IActivity {
     fun useFragment(): Boolean
 
     /**
-     * Activity 是否依赖注入，如果不需要，则重写此方法，返回 false
+     * 是否依赖注入，如果不需要，则重写此方法，返回 false
      *
      * @return true: 进行依赖注入；false:不进行依赖注入
      */
     fun injectable(): Boolean
+
 }

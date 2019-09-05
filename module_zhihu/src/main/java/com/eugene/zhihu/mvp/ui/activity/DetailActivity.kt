@@ -34,10 +34,6 @@ class DetailActivity : BaseActivity<DetailPresenter>(), DetailContract.View {
 //                .inject(this)
 //    }
 
-    override fun injectable(): Boolean {
-        return true
-    }
-
     override fun initLayout(savedInstanceState: Bundle?): Int {
         return R.layout.zhihu_activity_detail
     }

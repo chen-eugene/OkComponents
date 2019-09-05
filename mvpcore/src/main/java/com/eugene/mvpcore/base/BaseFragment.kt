@@ -87,4 +87,8 @@ abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment, IFragmentLi
     override fun useEventBus(): Boolean {
         return true
     }
+
+    override fun injectable(): Boolean {
+        return true
+    }
 }

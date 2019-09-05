@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModelProvider
 import com.eugene.commonsdk.base.service.IFragment
 import com.eugene.commonsdk.integration.cache.Cache
 import com.eugene.commonsdk.integration.cache.CacheType
 import com.eugene.commonsdk.utils.ArmsUtils
 import com.eugene.mvvm.mvvm.IViewModel
+import javax.inject.Inject
 
 /**
  * 如果只使用 DataBinding, 则 VM 的泛型可以传 {@link me.xiaobailong24.mvvmarms.mvvm.BaseViewModel}
  */
-abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(), IFragment {
+abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(), IFragment, IMvvmService {
 
     protected val TAG = this::class.java.name
 
@@ -37,13 +39,14 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(),
 
     protected var mViewModel: VM? = null
 
-//    @set:Inject
-//    protected var mViewModelFactory: ViewModelProvider.Factory? = null
+    @set:Inject
+    protected var mViewModelFactory: ViewModelProvider.Factory? = null
 
     @Synchronized
     override fun provideCache(): Cache<String, Any>? {
         if (mCache == null) {
-            val temp = ArmsUtils.obtainSdkComponentFromContext(activity)?.cacheFactory()?.build(CacheType.ACTIVITY_CACHE)
+            val temp =
+                ArmsUtils.obtainSdkComponentFromContext(activity)?.cacheFactory()?.build(CacheType.ACTIVITY_CACHE)
             if (temp != null)
                 mCache = temp as Cache<String, Any>
         }
@@ -83,6 +86,9 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(),
         super.onActivityCreated(savedInstanceState)
         if (mViewModel != null)
             lifecycle.addObserver(mViewModel as LifecycleObserver)
+
+        registerObserver()
+
         initData(savedInstanceState)
     }
 
@@ -105,7 +111,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(),
     override fun onDestroy() {
         super.onDestroy()
         this.mBinding = null
-//        this.mViewModelFactory = null
+        this.mViewModelFactory = null
         if (mViewModel != null)
             lifecycle.removeObserver(mViewModel as LifecycleObserver)
         this.mViewModel = null

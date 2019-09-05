@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.module_gold">
+    package="com.eugene.module_gold">
 
     <application android:name="com.eugene.commonsdk.base.BaseApplication">
 

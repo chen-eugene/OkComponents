@@ -1,23 +1,25 @@
 package com.eugene.module_gold.di.componet
 
+import android.app.Application
+import com.eugene.commonsdk.base.BaseApplication
 import com.eugene.commonsdk.di.component.SdkComponent
+import com.eugene.commonsdk.integration.AppManager
+import com.eugene.commonsdk.integration.IRepositoryManager
 import com.eugene.module_gold.di.module.ActivityBuilder
 import com.eugene.module_gold.di.module.ViewModelModule
-import com.eugene.mvvm.di.component.MvvmComponent
+import com.eugene.module_gold.di.scope.GoldScope
 import dagger.Component
 
-@Component(dependencies = [MvvmComponent::class], modules = [ActivityBuilder::class, ViewModelModule::class])
+@GoldScope
+@Component(dependencies = [SdkComponent::class], modules = [ActivityBuilder::class, ViewModelModule::class])
 interface GoldComponent {
 
+    fun application(): Application
 
-    @Component.Builder
-    interface Builder {
-//        @BindsInstance
-//        fun view(view: GoldHomeContract.View): GoldComponent.Builder
+    fun appManager(): AppManager?
 
-        fun appComponent(appComponent: SdkComponent): SdkComponent.Builder
+    fun repositoryManager(): IRepositoryManager?
 
-        fun build(): GoldComponent
-    }
+    fun inject(base: BaseApplication)
 
 }

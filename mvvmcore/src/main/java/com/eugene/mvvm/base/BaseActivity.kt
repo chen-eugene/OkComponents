@@ -16,7 +16,7 @@ import javax.inject.Inject
 /**
  * 如果只使用 DataBinding, 则 VM 的泛型可以传BaseViewModel
  */
-abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatActivity(), IActivity {
+abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatActivity(), IActivity, IMvvmService {
 
     private var mCache: Cache<String, Any>? = null
 
@@ -59,6 +59,8 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatAc
 
         initView(savedInstanceState)
 
+        registerObserver()
+
         initData(savedInstanceState)
     }
 
@@ -78,7 +80,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatAc
     override fun onDestroy() {
         super.onDestroy()
         this.mBinding = null
-//        this.mViewModelFactory = null
+        this.mViewModelFactory = null
         //移除LifecycleObserver
         if (mViewModel != null)
             lifecycle.removeObserver(mViewModel as LifecycleObserver)

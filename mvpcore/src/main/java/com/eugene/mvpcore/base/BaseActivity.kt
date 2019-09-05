@@ -78,4 +78,8 @@ open abstract class BaseActivity<P : IPresenter> : AppCompatActivity(), IActivit
     override fun useFragment(): Boolean {
         return true
     }
+
+    override fun injectable(): Boolean {
+        return true
+    }
 }
