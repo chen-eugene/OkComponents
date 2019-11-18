@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 abstract class BaseModel : IModel {
 
-    @set:Inject
-    protected var mRepositoryManager: IRepositoryManager? = null
+    @Inject
+    protected lateinit var mRepositoryManager: IRepositoryManager
 
     @set:Inject
     protected var mApplication: Application? = null

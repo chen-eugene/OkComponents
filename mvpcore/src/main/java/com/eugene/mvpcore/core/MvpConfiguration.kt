@@ -57,10 +57,10 @@ class MvpConfiguration : IConfigModule {
                     object : ClientModule.OkhttpConfiguration {
                         override fun configOkhttp(context: Context, builder: OkHttpClient.Builder) {
                             builder.sslSocketFactory(
-                                    SSLSocketClient.getSSLSocketFactory(),
-                                    SSLSocketClient.getTrustManager()
+                                    SSLSocketClient.sslSocketFactory,
+                                    SSLSocketClient.trustManager
                             )
-                            builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                            builder.hostnameVerifier(SSLSocketClient.hostnameVerifier)
                             //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
                             RetrofitUrlManager.getInstance().with(builder)
                         }

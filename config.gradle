@@ -123,6 +123,7 @@ ext {
             "retrofit-url-manager"     : "me.jessyan:retrofit-url-manager:1.4.0",
             "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
             "anko"                     : "org.jetbrains.anko:anko:0.10.8",
+            "utilcodex"                : 'com.blankj:utilcodex:1.25.8',
 
             //test
             "junit"                    : "junit:junit:4.12",

@@ -10,4 +10,5 @@ dependencies {
 //    compileOnly rootProject.ext.dependencies["javax.annotation"]
     api rootProject.ext.dependencies["paginate"]
     api rootProject.ext.dependencies["lottie"]
+    api rootProject.ext.dependencies["utilcodex"]
 }

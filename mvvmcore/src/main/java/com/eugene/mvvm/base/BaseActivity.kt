@@ -16,7 +16,7 @@ import javax.inject.Inject
 /**
  * 如果只使用 DataBinding, 则 VM 的泛型可以传BaseViewModel
  */
-abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatActivity(), IActivity, IMvvmService {
+abstract class BaseActivity<DB : ViewDataBinding, VM : IViewModel> : AppCompatActivity(), IActivity, IService {
 
     private var mCache: Cache<String, Any>? = null
 

@@ -13,6 +13,7 @@ import com.eugene.commonsdk.di.module.RepositoryConfigModule
 import com.eugene.commonsdk.integration.IConfigModule
 import com.google.gson.GsonBuilder
 import io.rx_cache2.internal.RxCache
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import okhttp3.OkHttpClient
 
 /**
@@ -25,18 +26,18 @@ class MvvmConfiguration : IConfigModule {
 //        builder.imageLoaderStrategy { GlideImageLoaderStrategy() as BaseImageLoaderStrategy<ImageConfig> }
         builder.globalHttpHandler { GlobalHttpHandlerImpl(context) }
 //                .responseErrorListener { ResponseErrorListenerImpl() }
-            .gsonConfiguration {
-                object : AppModule.GsonConfiguration {
-                    override fun configGson(context: Context, builder: GsonBuilder) {
-                        //支持序列化null的参数
-                        builder.serializeNulls()
-                            .enableComplexMapKeySerialization()//支持将序列化key为object的map,默认只能序列化key为string的map
+                .gsonConfiguration {
+                    object : AppModule.GsonConfiguration {
+                        override fun configGson(context: Context, builder: GsonBuilder) {
+                            //支持序列化null的参数
+                            builder.serializeNulls()
+                                    .enableComplexMapKeySerialization()//支持将序列化key为object的map,默认只能序列化key为string的map
+                        }
                     }
                 }
-            }
-            .okhttpConfiguration {
-                object : ClientModule.OkhttpConfiguration {
-                    override fun configOkhttp(context: Context, builder: OkHttpClient.Builder) {
+                .okhttpConfiguration {
+                    object : ClientModule.OkhttpConfiguration {
+                        override fun configOkhttp(context: Context, builder: OkHttpClient.Builder) {
 //                        builder.sslSocketFactory(
 //                            SSLSocketClient.getSSLSocketFactory(),
 //                            SSLSocketClient.getTrustManager()
@@ -44,21 +45,21 @@ class MvvmConfiguration : IConfigModule {
 //                        builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
 //                        //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
 //                        RetrofitUrlManager.getInstance().with(builder)
+                        }
                     }
                 }
-            }
-            .rxCacheConfiguration {
-                //这里可以自己自定义配置RxCache的参数
-                object : ClientModule.RxCacheConfiguration {
-                    override fun configRxCache(
-                        context: Context,
-                        builder: RxCache.Builder
-                    ): RxCache? {
-                        builder.useExpiredDataIfLoaderNotAvailable(true)
-                        return null
+                .rxCacheConfiguration {
+                    //这里可以自己自定义配置RxCache的参数
+                    object : ClientModule.RxCacheConfiguration {
+                        override fun configRxCache(
+                                context: Context,
+                                builder: RxCache.Builder
+                        ): RxCache? {
+                            builder.useExpiredDataIfLoaderNotAvailable(true)
+                            return null
+                        }
                     }
                 }
-            }
     }
 
     override fun injectAppLifecycle(context: Context?, lifecycles: MutableList<IAppLifecycle>) {
@@ -86,15 +87,15 @@ class MvvmConfiguration : IConfigModule {
     }
 
     override fun injectActivityLifecycle(
-        context: Context?,
-        lifecycles: MutableList<Application.ActivityLifecycleCallbacks>
+            context: Context?,
+            lifecycles: MutableList<Application.ActivityLifecycleCallbacks>
     ) {
         lifecycles.add(ActivityLifecycleCallbacksImpl())
     }
 
     override fun injectFragmentLifecycle(
-        context: Context?,
-        lifecycles: MutableList<FragmentManager.FragmentLifecycleCallbacks>
+            context: Context?,
+            lifecycles: MutableList<FragmentManager.FragmentLifecycleCallbacks>
     ) {
         lifecycles.add(FragmentLifecycleCallbacksImpl())
     }

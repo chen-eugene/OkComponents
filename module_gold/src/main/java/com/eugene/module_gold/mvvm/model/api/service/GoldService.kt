@@ -1,7 +1,7 @@
 package com.eugene.module_gold.mvvm.model.api.service
 
 import com.eugene.module_gold.mvvm.model.api.GOLD_DOMAIN_NAME
-import com.eugene.module_gold.mvvm.model.entry.GoldBaseResponse
+import com.eugene.module_gold.mvvm.model.entry.BaseResp
 import com.eugene.module_gold.mvvm.model.entry.GoldListBean
 import io.reactivex.Observable
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER
@@ -27,7 +27,7 @@ interface GoldService {
                     @Query("order") order: String,
                     @Query("include") include: String,
                     @Query("limit") limit: Int,
-                    @Query("skip") skip: Int): Observable<GoldBaseResponse<List<GoldListBean>>>
+                    @Query("skip") skip: Int): Observable<BaseResp<List<GoldListBean>>>
 
 
 }

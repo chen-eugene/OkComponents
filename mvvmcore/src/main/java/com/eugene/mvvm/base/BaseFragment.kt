@@ -18,7 +18,7 @@ import javax.inject.Inject
 /**
  * 如果只使用 DataBinding, 则 VM 的泛型可以传 {@link me.xiaobailong24.mvvmarms.mvvm.BaseViewModel}
  */
-abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(), IFragment, IMvvmService {
+abstract class BaseFragment<DB : ViewDataBinding, VM : IViewModel> : Fragment(), IFragment, IService {
 
     protected val TAG = this::class.java.name
 
