@@ -130,7 +130,6 @@ class ClientModule {
         fun bindInterceptor(interceptor: RequestInterceptor): Interceptor
     }
 
-
     interface RetrofitConfiguration {
         fun configRetrofit(context: Context, builder: Retrofit.Builder)
     }

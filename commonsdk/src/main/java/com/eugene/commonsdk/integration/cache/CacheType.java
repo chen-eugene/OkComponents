@@ -88,7 +88,7 @@ public interface CacheType {
         }
     };
 
-    CacheType ROOM_DATABASE_CACHE_TYPE = new CacheType() {
+    CacheType ROOM_DATABASE_CACHE = new CacheType() {
         private static final int MAX_SIZE = 150;
         private static final float MAX_SIZE_MULTIPLIER = 0.002f;
 
